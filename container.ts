@@ -1,11 +1,14 @@
+import { Authenticator } from "./src/libs";
+import { User } from "./src/server/models";
+
 export function createContainer() {
   return {
     health: "",
-     logger: "",
-     lib: {
-       hasher: "",
-       authenticator: "",
-     },
+    logger: "",
+    lib: {
+      hasher: "",
+      authenticator: new Authenticator(User),
+    },
     //  repositories: {
     //    task: taskRepo,
     //    user: userRepo,

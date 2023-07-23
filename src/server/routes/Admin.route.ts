@@ -1,9 +1,9 @@
 import Router from 'koa-router'
 
-const userRouer = new Router({ prefix: "/admin" });
+const Route = new Router({ prefix: "/admin" });
 
-userRouer.get('/', async (ctx, next) => {
+Route.get('/', async (ctx, next) => {
   ctx.body = 'admin res'
 });
 
-export default userRouer;
+export default Route;

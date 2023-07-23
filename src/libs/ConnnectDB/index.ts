@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 
-type Type_URI = string | undefined  
+type URI = string | undefined  
 
-async function ConnectDB() {
+export async function ConnectDB() {
   try {
-    const MONGODB_URI: Type_URI = process.env.MONGODB_URI;
+    const MONGODB_URI: URI = process.env.MONGODB_URI;
 
     if (!MONGODB_URI) {
       console.error( "MongoDB connection string is missing in environment variables");
@@ -21,4 +21,4 @@ async function ConnectDB() {
   }
 }
 
-export default ConnectDB;
+// export default ConnectDB;

@@ -1,12 +1,10 @@
 import Router from 'koa-router'
 import { UserController } from '../controllers';
 
-const userRouer = new Router({ prefix: "/users" });
+const Route = new Router({ prefix: "/users" });
 const controllerInstance = new UserController();
 
-userRouer.get("/all", controllerInstance.getAllUser);
-userRouer.get("/:_id", controllerInstance.getUser);
+Route.get("/all", controllerInstance.getAllUser);
+Route.get("/:_id", controllerInstance.getUser);
 
-userRouer.post("/", controllerInstance.createUser);
-
-export default userRouer;
+export default Route;

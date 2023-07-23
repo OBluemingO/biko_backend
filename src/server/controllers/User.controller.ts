@@ -1,24 +1,24 @@
-import { User } from "../models/index";
+import { User } from "../models";
 import { Context } from "koa";
 
 class UserController {
-  createUser = async (ctx: Context) => {
-    try {
-      const data = {
-        ...(ctx.request.body as {}),
-        role:'user'
-      };
+  // createUser = async (ctx: Context) => {
+  //   try {
+  //     const data = {
+  //       ...(ctx.request.body as {}),
+  //       role:'user'
+  //     };
 
-      const action = await User.create(data);
+  //     const action = await User.create(data);
 
-      ctx.body = action;
-    } catch (err) {
-      if(err instanceof Error){
-        ctx.body = err.message;
-      }
-      ctx.body = err
-    }
-  };
+  //     ctx.body = action;
+  //   } catch (err) {
+  //     if(err instanceof Error){
+  //       ctx.body = err.message;
+  //     }
+  //     ctx.body = err
+  //   }
+  // };
 
   getUser = async (ctx: Context) => {
     ctx.body = `get user`;
