@@ -2,6 +2,7 @@ import { User } from "../models";
 import { Auth, IUser } from "../../types";
 import { Context } from "koa";
 import { Authenticator, Hasher } from "../../libs";
+import { setCookie } from "koa-cookies";
 
 class AuthController {
   registerUser = async (ctx: Context) => {
@@ -33,7 +34,6 @@ class AuthController {
     try {
       const AuthJWT = new Authenticator(User);
       const Hash = new Hasher();
-
       const emailAndPassword = ctx.request.body as Auth;
       const user = await User.findOne({
         email: emailAndPassword.email,
@@ -57,11 +57,14 @@ class AuthController {
       }
 
       const accessToken = AuthJWT.authenticate(user);
-
+      ctx.cookies.set("shopOrigin", accessToken, {
+        httpOnly: true,
+        sameSite: "none",
+      });
       ctx.status = 200;
       ctx.body = {
         message: "success login!",
-        accessToken,
+        // accessToken,
       };
     } catch (err) {
       ctx.status = 500;

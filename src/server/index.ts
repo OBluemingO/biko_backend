@@ -1,6 +1,7 @@
 import Koa from "koa";
 import { Server } from "http";
 import bodyParser from "koa-bodyparser";
+import cors from "@koa/cors";
 import Routes from './routes'
 
 export class AppServer {
@@ -26,6 +27,7 @@ export function createServer(container: any) {
   const app = new Koa();
   const appServer = new AppServer(app);
   app.use(bodyParser())
+  app.use(cors())
   app.use(Routes.routes());
 
   return appServer; 
