@@ -6,7 +6,7 @@ export function createContainer() {
     health: "",
     logger: "",
     lib: {
-      hasher: "",
+      // hasher: "",
       authenticator: new Authenticator(User),
     },
     //  repositories: {

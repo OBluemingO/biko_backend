@@ -27,8 +27,18 @@ export function createServer(container: any) {
   const app = new Koa();
   const appServer = new AppServer(app);
   app.use(bodyParser())
-  app.use(cors())
-  app.use(Routes.routes());
+  app.use(
+    cors({
+      origin: "*", // Only allow requests from this origin
+      credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+      allowMethods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
+      exposeHeaders: ["Custom-Header"], // Expose additional headers to the client
+      maxAge: 86400, // How long the results of a preflight request (OPTIONS) can be cached, in seconds
+    })
+  );
+
+  const nestedRoutes = Routes(container)
+  app.use(nestedRoutes.routes());
 
   return appServer; 
 }

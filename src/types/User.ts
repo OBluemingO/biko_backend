@@ -17,4 +17,4 @@ export interface AuthUser {
   role: string;
 }
 
-export type Role = 'admin' | 'user'
+// export type Role = 'admin' | 'user'

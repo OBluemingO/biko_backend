@@ -57,14 +57,15 @@ class AuthController {
       }
 
       const accessToken = AuthJWT.authenticate(user);
-      ctx.cookies.set("shopOrigin", accessToken, {
+      ctx.cookies.set("token", accessToken, {
         httpOnly: true,
-        sameSite: "none",
+        maxAge: 3600000,
+        path: "/",
       });
+
       ctx.status = 200;
       ctx.body = {
         message: "success login!",
-        // accessToken,
       };
     } catch (err) {
       ctx.status = 500;

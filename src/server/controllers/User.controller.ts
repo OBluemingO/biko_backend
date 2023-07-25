@@ -27,6 +27,8 @@ class UserController {
   getAllUser = async (ctx: Context) => {
     ctx.body = `get all user`;
   };
+
+  
 }
 
 export default UserController
