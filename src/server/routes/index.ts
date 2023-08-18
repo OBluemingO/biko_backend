@@ -17,7 +17,8 @@ export default function NestedRoutes(container: IContainer) {
     const routes = new Router({ prefix: "/api" });
     // const nestedRoutes = [UserRoute, AdminRoute, AuthRoute, PostRoute];
     const nestedRoutes = [
-      PostRoute(container)
+      PostRoute(container),
+      AuthRoute(container)
     ];
 
     for (const route of nestedRoutes) {

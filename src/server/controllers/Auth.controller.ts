@@ -18,15 +18,16 @@ class AuthController {
         password: hashPassword,
         role: "user",
       };
-
-      const action = await User.create(data);
-
+      const action = await User.create(data)
       ctx.body = action;
+
     } catch (err) {
+      ctx.status = 500
       if (err instanceof Error) {
-        ctx.body = err.message;
+        ctx.body = `${err.message}`;
+        return
       }
-      ctx.body = err;
+      ctx.body = `${err}`;
     }
   };
 
