@@ -57,16 +57,11 @@ class AuthController {
         return;
       }
 
-      const accessToken = AuthJWT.authenticate(user);
-      ctx.cookies.set("token", accessToken, {
-        httpOnly: true,
-        maxAge: 3600000,
-        path: "/",
-      });
-
       ctx.status = 200;
       ctx.body = {
-        message: "success login!",
+        id: user._id,
+        name: user.firstName +" "+ user.lastName,
+        email: user.email,
       };
     } catch (err) {
       ctx.status = 500;
